@@ -12,23 +12,21 @@ const SearchScreen = () => {
 		costEffective,
 		bitPricier,
 		bitSpender,
-		error
+		error,
 	] = useResults()
-
-	const filterResultsByPrice = price => {}
 
 	return (
 		<>
 			<SearchBar
 				term={term}
-				onTermChange={setTerm}
-				onTermSubmit={searchApi}
+				onTermChange={q => setTerm(q)}
+				onTermSubmit={() => searchApi(term)}
 			/>
 			{error ? <Text>{error}</Text> : null}
 			<ScrollView>
-				<ResultsList title='Cost Effective' results={costEffective} />
-				<ResultsList title='Bit Pricier' results={bitPricier} />
-				<ResultsList title='Bit Spender' results={bitSpender} />
+				<ResultsList title='$' results={costEffective} />
+				<ResultsList title='$$' results={bitPricier} />
+				<ResultsList title='$$$' results={bitSpender} />
 			</ScrollView>
 		</>
 	)
